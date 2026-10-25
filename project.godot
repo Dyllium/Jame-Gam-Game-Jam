@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="The Jame Gam Game Jam"
+config/name="Small Dwarf, Big Dreams"
+config/version="1.0"
 run/main_scene="uid://cy3p66l7eyq6t"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
