@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cy3p66l7eyq6t"]
+
+[ext_resource type="Script" uid="uid://c6syfed25xlyp" path="res://Scripts/main_menu.gd" id="1_28flt"]
+
+[node name="MainMenu" type="Control" unique_id=1517984235]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_28flt")
+
+[node name="Play" type="Button" parent="." unique_id=1710861312]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 79.0
+text = "Play"
+
+[node name="Exit" type="Button" parent="." unique_id=523814192]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 138.0
+offset_top = 95.0
+offset_right = 175.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit
+"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

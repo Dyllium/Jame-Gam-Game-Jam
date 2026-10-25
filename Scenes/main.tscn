@@ -1,0 +1,173 @@
+[gd_scene format=4 uid="uid://tm4em0kwj8ew"]
+
+[ext_resource type="PackedScene" uid="uid://ctb0klnjlrf5r" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://i65svxu1lya" path="res://Scripts/main.gd" id="1_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://q8kr7eu7b262" path="res://Assets/JameTileset.png" id="3_jjvhh"]
+[ext_resource type="Shader" uid="uid://r0v88jk8hil7" path="res://Resources/CRT.gdshader" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://r7gcaw1wbvc8" path="res://Scenes/pickaxe_shop.tscn" id="5_kry3j"]
+[ext_resource type="Texture2D" uid="uid://dnsgvljqs4f4n" path="res://Assets/testtile.png" id="6_21xkr"]
+[ext_resource type="Script" uid="uid://dlkrenwe1bha0" path="res://Scripts/Healthbar.gd" id="7_344ge"]
+[ext_resource type="PackedScene" uid="uid://bvdatyn0axyxn" path="res://Scenes/heart.tscn" id="8_ynf5e"]
+[ext_resource type="Texture2D" uid="uid://c7onak2j8tsam" path="res://Assets/testtileground.png" id="9_ynf5e"]
+[ext_resource type="Script" uid="uid://dn505jycq1wb7" path="res://Scripts/gem_label.gd" id="10_hptm8"]
+[ext_resource type="PackedScene" uid="uid://ltkymxe8nqe3" path="res://Scenes/elevator.tscn" id="11_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://dnchpeu05rv48" path="res://Assets/smalldwarfcity.png" id="12_6iyac"]
+[ext_resource type="Texture2D" uid="uid://brf6260kpo37s" path="res://Assets/CrustBackground.png" id="13_fdnlq"]
+
+[sub_resource type="Environment" id="Environment_jgrr3"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_intensity = 1.2
+glow_bloom = 0.25
+glow_hdr_threshold = 0.8
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kry3j"]
+texture = ExtResource("3_jjvhh")
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/custom_data_0 = 6
+2:0/0/custom_data_2 = 1
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0/custom_data_0 = 10
+3:0/0/custom_data_2 = 2
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0/custom_data_0 = 4
+4:0/0/custom_data_1 = true
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/custom_data_0 = 1
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/custom_data_0 = 2
+
+[sub_resource type="TileSet" id="TileSet_coctf"]
+physics_layer_0/collision_layer = 4
+custom_data_layer_0/name = "HP"
+custom_data_layer_0/type = 2
+custom_data_layer_1/name = "Gem"
+custom_data_layer_1/type = 1
+custom_data_layer_2/name = "Power"
+custom_data_layer_2/type = 2
+sources/0 = SubResource("TileSetAtlasSource_kry3j")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_612tc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_612tc"]
+shader = ExtResource("4_jjvhh")
+shader_parameter/scanline_opacity = 0.25
+shader_parameter/scanline_count = 320.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bp64"]
+texture = ExtResource("6_21xkr")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_612tc"]
+sources/0 = SubResource("TileSetAtlasSource_6bp64")
+
+[node name="Main" type="Node2D" unique_id=1091559932]
+script = ExtResource("1_jjvhh")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1236918204]
+environment = SubResource("Environment_jgrr3")
+
+[node name="Player" parent="." unique_id=1187289508 node_paths=PackedStringArray("mineableLayer") instance=ExtResource("1_jjgbg")]
+position = Vector2(150, 38)
+mineableLayer = NodePath("../MineableTiles")
+
+[node name="MineableTiles" type="TileMapLayer" parent="." unique_id=854559516]
+tile_map_data = PackedByteArray("AAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAABAAsAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAADAAoAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAAAAAAHAAoAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAoAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAALAAoAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAgAAAAAAAAAAAAMAAkAAAAAAAAAAAAMAAoAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAAAAAANAAkAAAAAAAAAAAANAAoAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAcAAAAAAAAAAAAOAAgAAAAAAAAAAAAOAAkAAAAAAAAAAAAOAAoAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAAQAAkAAAAAAAAAAAAQAAoAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAcAAAAAAAAAAAARAAgAAAAAAAAAAAARAAkAAAAAAAAAAAARAAoAAAAAAAAAAAARAAsAAAAAAAAAAAASAAcAAAAAAAAAAAASAAgAAAAAAAAAAAASAAkAAAAAAAAAAAASAAoAAAAAAAAAAAASAAsAAAAAAAAAAAATAAcAAAAAAAAAAAATAAgAAAAAAAAAAAATAAkAAAAAAAAAAAATAAoAAAAAAAAAAAATAAsAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAUAAAAAAAAAAAARAAYAAAAAAAAAAAASAAUAAAAAAAAAAAASAAYAAAAAAAAAAAATAAUAAAAAAAAAAAATAAYAAAAAAAAAAAAAAAMAAAABAAAAAAABAAMAAAABAAAAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAABAAAAAAAFAAMAAAABAAAAAAAGAAMAAAABAAAAAAAHAAMAAAABAAAAAAAIAAMAAAABAAAAAAAKAAMAAAABAAAAAAAJAAMAAAABAAAAAAALAAMAAAABAAAAAAAMAAMAAAABAAAAAAANAAMAAAABAAAAAAAOAAMAAAABAAAAAAAPAAMAAAABAAAAAAAQAAMAAAABAAAAAAARAAMAAAABAAAAAAASAAMAAAABAAAAAAATAAMAAAABAAAAAAAAAFAAAAABAAAAAAABAFAAAAABAAAAAAACAFAAAAABAAAAAAADAFAAAAABAAAAAAAEAFAAAAABAAAAAAAFAFAAAAABAAAAAAAGAFAAAAABAAAAAAAHAFAAAAABAAAAAAAIAFAAAAABAAAAAAAJAFAAAAABAAAAAAAKAFAAAAABAAAAAAALAFAAAAABAAAAAAAMAFAAAAABAAAAAAANAFAAAAABAAAAAAAOAFAAAAABAAAAAAAPAFAAAAABAAAAAAAQAFAAAAABAAAAAAARAFAAAAABAAAAAAASAFAAAAABAAAAAAATAFAAAAABAAAAAAAUAFAAAAABAAAAAAAVAFAAAAABAAAAAAAWAFAAAAABAAAAAAAXAFAAAAABAAAAAAAYAFAAAAABAAAAAAAZAFAAAAABAAAAAAAaAFAAAAABAAAAAAAbAFAAAAABAAAAAAAcAFAAAAABAAAAAAAdAFAAAAABAAAAAAAfAFAAAAABAAAAAAAgAFAAAAABAAAAAAAeAFAAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_coctf")
+
+[node name="PickaxeShop" parent="." unique_id=998828195 instance=ExtResource("5_kry3j")]
+position = Vector2(237, 40)
+bootCosts = null
+pickaxeCosts = null
+
+[node name="Elevator" parent="." unique_id=1507078313 instance=ExtResource("11_d1ilt")]
+position = Vector2(249, 1272)
+
+[node name="Borders" type="Node" parent="." unique_id=72475029]
+
+[node name="BorderLeft" type="StaticBody2D" parent="Borders" unique_id=1943591257]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderLeft" unique_id=995611248]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_612tc")
+
+[node name="BorderRight" type="StaticBody2D" parent="Borders" unique_id=2135317485]
+position = Vector2(319, 0)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderRight" unique_id=1110516919]
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_612tc")
+
+[node name="CRTOverlay" type="CanvasLayer" parent="." unique_id=715921511]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="CRTOverlay" unique_id=185358909]
+material = SubResource("ShaderMaterial_612tc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=104569950]
+tile_map_data = PackedByteArray("AAAAAE8AAAAAAAAAAAABAE8AAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_612tc")
+
+[node name="Hud" type="CanvasLayer" parent="." unique_id=1282669429]
+
+[node name="HeartContainer" type="HBoxContainer" parent="Hud" unique_id=1034302309]
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = -4
+script = ExtResource("7_344ge")
+heartScene = ExtResource("8_ynf5e")
+
+[node name="Heart" parent="Hud/HeartContainer" unique_id=1919464141 instance=ExtResource("8_ynf5e")]
+layout_mode = 2
+
+[node name="Heart3" parent="Hud/HeartContainer" unique_id=326617843 instance=ExtResource("8_ynf5e")]
+layout_mode = 2
+
+[node name="Heart2" parent="Hud/HeartContainer" unique_id=1149789072 instance=ExtResource("8_ynf5e")]
+layout_mode = 2
+
+[node name="Gem" type="TextureRect" parent="Hud" unique_id=477980867]
+offset_left = 273.0
+offset_right = 289.0
+offset_bottom = 16.0
+texture = ExtResource("9_ynf5e")
+
+[node name="GemLabel" type="Label" parent="Hud" unique_id=815818474 node_paths=PackedStringArray("player")]
+offset_left = 247.0
+offset_top = -3.0
+offset_right = 309.0
+offset_bottom = 20.0
+text = "Gems: 0"
+script = ExtResource("10_hptm8")
+player = NodePath("../../Player")
+
+[node name="Backgrounds" type="Node2D" parent="." unique_id=991108888]
+z_index = -5
+position = Vector2(0, -110)
+
+[node name="SmallDwarfCity" type="TextureRect" parent="Backgrounds" unique_id=1045518446]
+offset_right = 320.0
+offset_bottom = 160.0
+texture = ExtResource("12_6iyac")
+
+[node name="Crust" type="TextureRect" parent="Backgrounds" unique_id=1716015258]
+offset_left = 1.0
+offset_top = 159.0
+offset_right = 321.0
+offset_bottom = 559.0
+texture = ExtResource("13_fdnlq")

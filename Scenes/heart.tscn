@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bvdatyn0axyxn"]
+
+[ext_resource type="Texture2D" uid="uid://feep12gc2gxe" path="res://Assets/Hearts.png" id="1_v4aiu"]
+[ext_resource type="Script" uid="uid://ckevlrs2sf5un" path="res://Scripts/heart.gd" id="2_v4aiu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iyac"]
+atlas = ExtResource("1_v4aiu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdnlq"]
+atlas = ExtResource("1_v4aiu")
+region = Rect2(16, 0, 16, 16)
+
+[node name="Heart" type="TextureRect" unique_id=1919464141]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_6iyac")
+script = ExtResource("2_v4aiu")
+fullTexture = SubResource("AtlasTexture_6iyac")
+emptyTexture = SubResource("AtlasTexture_fdnlq")

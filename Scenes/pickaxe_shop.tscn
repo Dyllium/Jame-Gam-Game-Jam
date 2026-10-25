@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://r7gcaw1wbvc8"]
+
+[ext_resource type="Texture2D" uid="uid://dnsgvljqs4f4n" path="res://Assets/testtile.png" id="1_m5yq0"]
+[ext_resource type="Script" uid="uid://cxxefowi3we8l" path="res://Scripts/pickaxe_shop.gd" id="1_rjia8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_612tc"]
+radius = 34.0147
+
+[sub_resource type="Theme" id="Theme_rjia8"]
+default_font_size = 8
+
+[node name="PickaxeShop" type="Area2D" unique_id=998828195]
+collision_mask = 2
+script = ExtResource("1_rjia8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=776622505]
+texture = ExtResource("1_m5yq0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=202415507]
+shape = SubResource("CircleShape2D_612tc")
+
+[node name="ShopLabel" type="Label" parent="." unique_id=355287173]
+offset_left = -45.0
+offset_top = -32.0
+offset_right = 7.0
+offset_bottom = -5.0
+theme = SubResource("Theme_rjia8")
+text = "Pickaxe LEvel
+Boot level"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

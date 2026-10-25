@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cimyds4uyogfl"]
+
+[ext_resource type="Texture2D" uid="uid://dnsgvljqs4f4n" path="res://Assets/testtile.png" id="1_6jjv5"]
+[ext_resource type="Script" uid="uid://bftccnntrh2a1" path="res://Scripts/fly_enemy.gd" id="1_r8ufj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_612tc"]
+size = Vector2(13, 10)
+
+[node name="FlyEnemy" type="CharacterBody2D" unique_id=1255871407]
+motion_mode = 1
+script = ExtResource("1_r8ufj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1687639445]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_612tc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1510767691]
+texture = ExtResource("1_6jjv5")
