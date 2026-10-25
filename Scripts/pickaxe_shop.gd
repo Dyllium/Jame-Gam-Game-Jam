@@ -3,6 +3,7 @@ extends Area2D
 @export var bootCosts: Array[int] = [5, 12, 25]
 @export var pickaxeCosts: Array[int] = [5, 12, 25]
 @onready var shop_label: Label = $ShopLabel
+@onready var chaching: AudioStreamPlayer2D = $Chaching
 
 var player: Node2D
 var playerInside: bool = false
@@ -54,6 +55,7 @@ func upgrade_pickaxe() -> void:
 	if player.gems >= cost:
 		player.gems -= cost
 		player.upgrade_pickaxe()
+		chaching.play()
 		update_shop_text()
 	else:
 		return
@@ -68,6 +70,7 @@ func upgrade_shoes() -> void:
 	if player.gems >= cost:
 		player.gems -= cost
 		player.upgrade_boots()
+		chaching.play()
 		update_shop_text()
 	else:
 		return

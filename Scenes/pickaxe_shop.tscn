@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxxefowi3we8l" path="res://Scripts/pickaxe_shop.gd" id="1_rjia8"]
 [ext_resource type="Texture2D" uid="uid://ul0li3v2nxed" path="res://Assets/anvil.png" id="2_5xte2"]
 [ext_resource type="FontFile" uid="uid://uqil5lex05cq" path="res://Resources/monogram.ttf" id="3_5xte2"]
+[ext_resource type="AudioStream" uid="uid://b0ngqu61l8p4m" path="res://sounds/chaching.wav" id="4_nwqrw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_612tc"]
 radius = 34.0147
@@ -34,6 +35,10 @@ label_settings = SubResource("LabelSettings_5xte2")
 horizontal_alignment = 1
 vertical_alignment = 3
 autowrap_mode = 3
+
+[node name="Chaching" type="AudioStreamPlayer2D" parent="." unique_id=1948885785]
+stream = ExtResource("4_nwqrw")
+volume_db = -20.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

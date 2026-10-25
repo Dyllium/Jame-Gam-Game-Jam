@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://bp6c50aioytx6" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://m5s83p8irjqy" path="res://Assets/DwarfMiner.png" id="2_cvnsp"]
 [ext_resource type="Script" uid="uid://cjosawvhfksdd" path="res://Scripts/Health_Component.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://0vgycsrvifc1" path="res://Scenes/camera.gd" id="3_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://co1i3td03gss4" path="res://Assets/Pickaxe0.png" id="4_vgqql"]
+[ext_resource type="AudioStream" uid="uid://dk7sqd5e745y5" path="res://sounds/hurt.wav" id="5_fkybt"]
+[ext_resource type="AudioStream" uid="uid://dmxxwye4e02t5" path="res://sounds/Breaking.wav" id="6_3smsa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
 atlas = ExtResource("2_cvnsp")
@@ -133,9 +136,11 @@ one_shot = true
 limit_left = 0
 limit_right = 319
 limit_smoothed = true
+script = ExtResource("3_x3wgy")
 
-[node name="HealthComponent" type="Node" parent="." unique_id=716896857]
+[node name="HealthComponent" type="Node" parent="." unique_id=716896857 node_paths=PackedStringArray("damageAudioPlayer")]
 script = ExtResource("3_6t5aa")
+damageAudioPlayer = NodePath("../DamageAudioPlayer")
 max_health = 3
 metadata/_custom_type_script = "uid://cjosawvhfksdd"
 
@@ -150,7 +155,7 @@ texture = ExtResource("4_vgqql")
 position = Vector2(11, -2)
 emitting = false
 amount = 12
-lifetime = 0.09999999999999999
+lifetime = 0.1
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_612tc")
 
@@ -161,3 +166,11 @@ shadow_filter = 2
 shadow_filter_smooth = 1.0
 texture = SubResource("GradientTexture2D_612tc")
 texture_scale = 4.0
+
+[node name="MineAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=210014405]
+stream = ExtResource("6_3smsa")
+volume_db = -30.0
+
+[node name="DamageAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1123783656]
+stream = ExtResource("5_fkybt")
+volume_db = -25.0

@@ -9,6 +9,8 @@ extends CharacterBody2D
 @onready var pickaxe_sprite: Sprite2D = $PickaxePivot/Sprite2D
 @onready var point_light_2d: PointLight2D = $PointLight2D
 @onready var miningparticles: GPUParticles2D = $PickaxePivot/miningparticles
+@onready var camera: Camera2D = $Camera2D
+@onready var mine_audio_player: AudioStreamPlayer2D = $MineAudioPlayer
 
 const PICKAXE_1: CompressedTexture2D = preload("res://Assets/Pickaxe1.png")
 const PICKAXE_2: CompressedTexture2D = preload("res://Assets/Pickaxe2.png")
@@ -25,6 +27,7 @@ const ACCEL: float = 600
 const FRICTION: float = 800
 const GRAVITY: float = 980
 const JUMP_FORCE: float = 225
+
 
 var safeTileLimits: Array[int] = [4,6,8,10]
 var peakHeight: float = 0
@@ -147,6 +150,9 @@ func try_mine() -> void:
 			tilePower[coords] = startingPower
 		if pickaxeLevel >= tilePower[coords]:
 			play_pickaxe_swing()
+			mine_audio_player.pitch_scale = randf_range(0.9,1.1)
+			mine_audio_player.play()
+			camera.screen_shake(1,0.05)
 			miningparticles.restart()
 			tileHealth[coords] -= miningPower
 		if tileHealth[coords] <= 0:
@@ -160,10 +166,11 @@ func try_mine() -> void:
 		pass
 
 func _on_died() -> void:
+	await get_tree().create_timer(0.2).timeout
 	get_tree().change_scene_to_file("res://Scenes/death_screen.tscn")
 
 func _health_changed(current_health: int, max_health: int) -> void:
-	pass
+	camera.screen_shake(5,0.1)
 
 func upgrade_pickaxe() -> void:
 	pickaxeLevel += 1
