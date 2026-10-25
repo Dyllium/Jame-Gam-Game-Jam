@@ -65,8 +65,6 @@ func generate_caves() -> void:
 					mineable_tiles.set_cell(coords, -1)
 				else:
 					mineable_tiles.set_cell(coords, 0, Vector2i(3,0))
-			elif y == 80:
-				mineable_tiles.set_cell(coords, 0, Vector2i(3,0))
 				
 func spawn_enemies() -> void:
 	for x in range(mapWidth):

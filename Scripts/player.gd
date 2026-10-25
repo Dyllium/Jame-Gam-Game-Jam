@@ -7,6 +7,12 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var pickaxe_pivot: Node2D = $PickaxePivot
 @onready var pickaxe_sprite: Sprite2D = $PickaxePivot/Sprite2D
+@onready var point_light_2d: PointLight2D = $PointLight2D
+@onready var miningparticles: GPUParticles2D = $PickaxePivot/miningparticles
+
+const PICKAXE_1: CompressedTexture2D = preload("res://Assets/Pickaxe1.png")
+const PICKAXE_2: CompressedTexture2D = preload("res://Assets/Pickaxe2.png")
+const PICKAXE_3: CompressedTexture2D = preload("res://Assets/Pickaxe3.png")
 
 var coyoteTimeActivated: bool = false
 var tileHealth: Dictionary = {}
@@ -43,6 +49,11 @@ func _process(delta: float) -> void:
 		pickaxe_sprite.scale.y = -0.5
 	else:
 		pickaxe_sprite.scale.y = 0.5
+		
+	if position.y < 60:
+		point_light_2d.enabled = false
+	else:
+		point_light_2d.enabled = true
 
 func _physics_process(delta: float) -> void:
 	#Apply Gravity
@@ -136,6 +147,7 @@ func try_mine() -> void:
 			tilePower[coords] = startingPower
 		if pickaxeLevel >= tilePower[coords]:
 			play_pickaxe_swing()
+			miningparticles.restart()
 			tileHealth[coords] -= miningPower
 		if tileHealth[coords] <= 0:
 			var tileData = mineableLayer.get_cell_tile_data(coords)
@@ -159,10 +171,13 @@ func upgrade_pickaxe() -> void:
 	match pickaxeLevel:
 		1:
 			miningPower = 2
+			pickaxe_sprite.texture = PICKAXE_1
 		2:
-			miningPower = 5
+			miningPower = 4
+			pickaxe_sprite.texture = PICKAXE_2
 		3:
-			miningPower = 10
+			miningPower = 6
+			pickaxe_sprite.texture = PICKAXE_3
 func upgrade_boots() -> void:
 	bootLevel += 1
 	gemsChanged.emit(gems)

@@ -1,3 +1,10 @@
 [gd_scene format=3 uid="uid://6pmxvkme27sq"]
 
+[ext_resource type="Texture2D" uid="uid://btdckppdd6voe" path="res://Assets/WinScreen.png" id="1_l5sol"]
+
 [node name="WinScreen" type="Node2D" unique_id=1424928618]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=962494611]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_l5sol")

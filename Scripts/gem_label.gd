@@ -4,8 +4,8 @@ extends Label
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.gemsChanged.connect(_on_gems_changed)
-	text = "Gems: " + str(player.gems)
+	text = str(player.gems)
 
 
 func _on_gems_changed(new_amount: int) -> void:
-	text = "Gems: " + str(new_amount)
+	text = str(new_amount)

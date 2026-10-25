@@ -1,5 +1,9 @@
 [gd_scene format=3 uid="uid://8y7jxll1rcdw"]
 
+[ext_resource type="Script" uid="uid://83i7o8f72mny" path="res://Scenes/death_screen.gd" id="1_tseak"]
+[ext_resource type="Texture2D" uid="uid://k16cys4rouxx" path="res://Assets/DeathScreen.png" id="2_amiou"]
+[ext_resource type="Texture2D" uid="uid://cculr1qyk1qj7" path="res://Assets/StartButton.png" id="3_vb6s7"]
+
 [node name="DeathScreen" type="Control" unique_id=1780821311]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +11,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tseak")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=823657197]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_amiou")
+
+[node name="Button" type="Button" parent="." unique_id=2045795348]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 141.0
+offset_right = 118.0
+offset_bottom = 174.0
+
+[node name="TextureRect" type="TextureRect" parent="Button" unique_id=1679410320]
+layout_mode = 0
+offset_top = -6.0
+offset_right = 150.0
+offset_bottom = 34.0
+texture = ExtResource("3_vb6s7")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

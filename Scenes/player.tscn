@@ -87,6 +87,24 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(8, 13)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_612tc"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 75.0
+gravity = Vector3(0, 400, 0)
+scale_max = 3.0
+
+[sub_resource type="Gradient" id="Gradient_vgqql"]
+offsets = PackedFloat32Array(0, 0.70481926)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_612tc"]
+gradient = SubResource("Gradient_vgqql")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Player" type="CharacterBody2D" unique_id=1187289508 groups=["Player"]]
 z_index = 2
 collision_layer = 2
@@ -127,3 +145,19 @@ metadata/_custom_type_script = "uid://cjosawvhfksdd"
 position = Vector2(8, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_vgqql")
+
+[node name="miningparticles" type="GPUParticles2D" parent="PickaxePivot" unique_id=2089958351]
+position = Vector2(11, -2)
+emitting = false
+amount = 12
+lifetime = 0.09999999999999999
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_612tc")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1459448487]
+position = Vector2(0, -6)
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_612tc")
+texture_scale = 4.0

@@ -1,34 +1,39 @@
 [gd_scene format=3 uid="uid://r7gcaw1wbvc8"]
 
-[ext_resource type="Texture2D" uid="uid://dnsgvljqs4f4n" path="res://Assets/testtile.png" id="1_m5yq0"]
 [ext_resource type="Script" uid="uid://cxxefowi3we8l" path="res://Scripts/pickaxe_shop.gd" id="1_rjia8"]
+[ext_resource type="Texture2D" uid="uid://ul0li3v2nxed" path="res://Assets/anvil.png" id="2_5xte2"]
+[ext_resource type="FontFile" uid="uid://uqil5lex05cq" path="res://Resources/monogram.ttf" id="3_5xte2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_612tc"]
 radius = 34.0147
 
-[sub_resource type="Theme" id="Theme_rjia8"]
-default_font_size = 8
+[sub_resource type="LabelSettings" id="LabelSettings_5xte2"]
+font = ExtResource("3_5xte2")
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="PickaxeShop" type="Area2D" unique_id=998828195]
 collision_mask = 2
 script = ExtResource("1_rjia8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=776622505]
-texture = ExtResource("1_m5yq0")
+texture = ExtResource("2_5xte2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=202415507]
 shape = SubResource("CircleShape2D_612tc")
 
 [node name="ShopLabel" type="Label" parent="." unique_id=355287173]
-offset_left = -45.0
-offset_top = -32.0
-offset_right = 7.0
-offset_bottom = -5.0
-theme = SubResource("Theme_rjia8")
+z_index = 3
+offset_left = -89.0
+offset_top = -42.0
+offset_right = 89.0
+offset_bottom = -13.0
 text = "Pickaxe LEvel
 Boot level"
+label_settings = SubResource("LabelSettings_5xte2")
 horizontal_alignment = 1
 vertical_alignment = 3
+autowrap_mode = 3
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
